@@ -1,6 +1,6 @@
 {
   "defaultMoment": "chloe-coffee",
   "moments": {
-    "chloe-coffee": "/moments/chloe-coffee.json"
+    "chloe-coffee": "moments/chloe-coffee.json"
   }
 }
