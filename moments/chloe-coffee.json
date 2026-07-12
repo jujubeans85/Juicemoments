@@ -1,0 +1,22 @@
+{
+  "id": "chloe-coffee",
+  "title": "For Chloe \u2615",
+  "recipient": "Chloe",
+  "image": "/assets/chloe-coffee.jpeg",
+  "alt": "A warm coffee gift for Chloe",
+  "eyebrow": "FOR YOUR WORK WEEK",
+  "headline": "Tap for caffeine.",
+  "revealHeadline": "Enjoy \u2764\ufe0f",
+  "revealText": "Opening your coffee now\u2026",
+  "destination": "https://api.vecport.net/vectron-crm/public/api/etc/receipt/76188b724f537864ff419ff54a8c9fcd?hash=$2y$10$CyZchA4paC8ayvryMBe8oeg8RkKBSgz2L69Lukl1dczdZCFeumn1y",
+  "delayMs": 900,
+  "haptic": [
+    35,
+    35,
+    55
+  ],
+  "theme": {
+    "background": "#120906",
+    "overlay": "warm"
+  }
+}
