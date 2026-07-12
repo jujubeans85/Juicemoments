@@ -1,26 +1,25 @@
 const $ = (selector) => document.querySelector(selector);
 
+const appBase = new URL("./", document.baseURI);
+const resolveAppUrl = (path) => new URL(String(path).replace(/^\/+/, ""), appBase).href;
+
+async function loadJson(path, errorMessage) {
+  const response = await fetch(resolveAppUrl(path), { cache: "no-store" });
+  if (!response.ok) throw new Error(errorMessage);
+  return response.json();
+}
+
 async function loadMoment() {
   const params = new URLSearchParams(window.location.search);
   const requested = params.get("moment");
 
-  const registry = await fetch("/moments.json", { cache: "no-store" }).then(r => {
-    if (!r.ok) throw new Error("Could not load moment registry.");
-    return r.json();
-  });
-
+  const registry = await loadJson("moments.json", "Could not load moment registry.");
   const id = requested || registry.defaultMoment;
   const path = registry.moments[id];
 
-  if (!path) {
-    throw new Error(`Unknown moment: ${id}`);
-  }
+  if (!path) throw new Error(`Unknown moment: ${id}`);
 
-  const moment = await fetch(path, { cache: "no-store" }).then(r => {
-    if (!r.ok) throw new Error("Could not load moment.");
-    return r.json();
-  });
-
+  const moment = await loadJson(path, "Could not load moment.");
   renderMoment(moment);
 }
 
@@ -35,7 +34,7 @@ function renderMoment(moment) {
   const thanksText = $("#thanks-text");
   const thanks = $("#thanks");
 
-  image.src = moment.image;
+  image.src = resolveAppUrl(moment.image);
   image.alt = moment.alt || "";
   eyebrow.textContent = moment.eyebrow || "";
   headline.textContent = moment.headline || "Tap anywhere.";
